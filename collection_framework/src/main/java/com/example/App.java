@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 // import lombok.var;
@@ -83,6 +84,55 @@ public class App {
     * */
     
     System.out.println(personas);
+    
+    /* Traversing Collections
+     * 
+     * https://docs.oracle.com/javase/tutorial/collections/interfaces/collection.html
+     * 
+     * Y en doc Arrays, Generics and Collection Framework
+     * 
+     * Existen 3 formas de recorrer una colección:
+     * 
+     * Mejor variante: Utilizando Operaciones de Agregado, es decir: Programación Funcional
+     * metodos de clase Stream, metodos por referencia y operaciones lambda.
+     * 
+     * Otros metodos:
+     * 
+     * Iterador, interfaz Iterator<E>. Unica forma de eliminar un elemento a la vez que se recorre la colección.
+     * 
+     * For mejorado.
+     * 
+     * */
+    
+    /*
+     * Variante #1 Iterador: recorrer colección y a la vez eliminar a los de Genero Hombre.
+     * */
+    
+    System.out.println("----------------- Listado Original Personas ----------------------");
+    System.out.println(personas);
+    
+    Iterator<Persona> it = personas.iterator(); // declaramos iterador it para recorrer persona. Iterator vincula it con lista personas.
+    
+    	// recorrer en bucle la lista de personas, en este caso al no conocer el tamaño de la lista while.
+    	while (it.hasNext()) {
+    		// hasNext verdadero si hay mas elementos en la colec.
+    		
+    		if (it.next().genero().equals(Genero.HOMBRE)) {
+    			it.remove(); // metodo del iterator para cargarnos un elemento, que hemos comprobado que es hombre en la condición del if.
+    		}
+    	}
+    
+    System.out.println("----------- Personas tras eliminar las de genero hombre ----------");
+    System.out.println(personas);
+    
+    /*
+     * Ejercicio #1 utilizando un iterador eliminar del listado de personas, aquellas de genero hombre , 
+     * cuyo nombre tenga 6 caracteres.
+     * 
+     * Para la solución hacer commit del estado actual y eliminar o comentar el código del iterador  anterior
+     * para tener la lista de personas original.
+     * */
+    
     
     }
 }
