@@ -22,9 +22,9 @@ public class App {
      * Colección de números enteros a partir de un array de números enteros.
      * */
     	
-    Integer[] arrayNumerosEnteros = {1, 2, 3, 4, 5};
+    // Integer[] arrayNumerosEnteros = {1, 2, 3, 4, 5};
     
-    List<Integer> numerosEnteros = Arrays.asList(arrayNumerosEnteros);
+    // List<Integer> numerosEnteros = Arrays.asList(arrayNumerosEnteros);
     
     /*Una coleccion obtenida directamente a partir de un array es una coleccion de tamaño fijo que no se
      * puede agregar, ni eliminar elementos. Si, modificar esos elementos o sería inmutable.
@@ -83,6 +83,7 @@ public class App {
     * Se le pueden añadir o quitar elemtos cuando sea necesario.
     * */
     
+    System.out.println("----------------- Listado Original Personas ----------------------");
     System.out.println(personas);
     
     /* Traversing Collections
@@ -108,7 +109,7 @@ public class App {
      * Variante #1 Iterador: recorrer colección y a la vez eliminar a los de Genero Hombre.
      * */
     
-    System.out.println("----------------- Listado Original Personas ----------------------");
+    /*System.out.println("----------------- Listado Original Personas ----------------------");
     System.out.println(personas);
     
     Iterator<Persona> it = personas.iterator(); // declaramos iterador it para recorrer persona. Iterator vincula it con lista personas.
@@ -133,6 +134,20 @@ public class App {
      * para tener la lista de personas original.
      * */
     
+    
+    Iterator<Persona> it = personas.iterator();
+    
+    while(it.hasNext()) {
+    	var persona = it.next();
+    	
+    	if (persona.genero().equals(Genero.HOMBRE) &&
+    			persona.nombre().length() == 7)
+    		it.remove();
+    	
+    }
+    
+    System.out.println("--- Listado resultante ---");
+    System.out.println(personas);
     
     }
 }
