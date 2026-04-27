@@ -244,11 +244,42 @@ public class App {
     	personas.stream().filter(new Predicate<Persona>() {
 
 			@Override
-			public boolean test(Persona persona) {
+			public boolean test(Persona p) {
 				// TODO Auto-generated method stub
-				return persona.genero().equals(Genero.MUJER);
+				return p.genero().equals(Genero.MUJER);
 			}
 		});
-    
+    	
+    /*
+     * El uso de la clase anonima, o expresión de clase anonima es mejor que implementar la clase
+     * filtro a parte, pero sigue siendo una exageración si no se van a declarar variables 
+     * adicionales, ni implementar otra cosa diferente del metodo abstracto de la interfaz predicate.
+     * Si solo vamos a usar el metodo abstracto Test de la interfaz funcional Predicate.
+     * 
+     * Y llegamos a las EXPRESIONES LAMBDA. 
+     * 
+     * Es un metodo anonimo, sin nombre, para implementar los metodos de las interfaces funcionales,
+     * como el predicado del filter que estamos utilizando.
+     * 
+     * Al metod FILTER de la clase STREAM le tengo q pasar una lambda q implemente el metodo TEST del 
+     * interfaz funcinal PREDICATE.
+     * 
+     * https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html
+     * 
+     * Nota IMPORTANTE LAMBDAS Y CLASES ANONIMAS
+     * Tanto clases anonimas com expresiones lambda solo se pueden relacionar con variables
+     * locales (declaradas dentro de metodos) que sean explicitamente final o effectively final.
+     *  
+     * */
+    	
+    	// personas.stream().filter(test(Persona p){
+    	//	return p.genero().equals(Genero.MUJER)
+    	//	});
+    		
+    		
+    	personas.stream().filter(p -> p.genero().equals(Genero.MUJER));
+    	
+    	
+    	
     }
 }
