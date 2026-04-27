@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.zip.GZIPInputStream;
 
 // import lombok.var;
@@ -221,8 +222,33 @@ public class App {
     
     	// personas.stream().filter(filtro)
     
-    	personas.stream().filter(new Filtro());    	
+    	// personas.stream().filter(new Filtro());    	
+    	
+    /*
+     * El código es una exageración por tener que declarar una clase externa solamente para
+     * implementar la interfaz funcional Predicate.
+     * 
+     * Más eficiente crear una clase en el mismo sitio donde se va a instanciar el objeto.
+     * El lo guisa y el se lo come.
+     * 
+     * Para esto => Clases anonimas: Clase que no tiene nombre. Se declara pero no sirve para instanciar
+     * un objeto. Parece una clase pero no tiene nombre es una expresión de clase.
+     * 
+     * Se puede utilizar una clase anonima para instanciar un objeto a partir de una interfaz, pero 
+     * también a partir de una clase abstracta.
+     * 
+     * Clase anonima permite declarar e instanciar un objeto al mismo tiempo. Hacemos sobre Persona
+     * lo mismo que hicimos en la clase cuando la declaramos a parte dejar cursor sobre ello e implementar.
+     * */
     
+    	personas.stream().filter(new Predicate<Persona>() {
+
+			@Override
+			public boolean test(Persona persona) {
+				// TODO Auto-generated method stub
+				return persona.genero().equals(Genero.MUJER);
+			}
+		});
     
     }
 }
