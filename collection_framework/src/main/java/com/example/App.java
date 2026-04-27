@@ -47,6 +47,7 @@ public class App {
     	.segundoApellido("Gon")
     	.fechaNacimiento(LocalDate.of(1995, Month.JANUARY, 20))
     	.genero(Genero.HOMBRE)
+    	.salario(3500.50)
     	.build()
     	);
     
@@ -57,6 +58,7 @@ public class App {
     	.segundoApellido("Becerra")
     	.fechaNacimiento(LocalDate.of(2000, Month.OCTOBER, 10))
     	.genero(Genero.MUJER)
+    	.salario(3600.45)
     	.build()
     	);
     
@@ -67,6 +69,7 @@ public class App {
         	.segundoApellido("González")
         	.fechaNacimiento(LocalDate.of(2005, Month.OCTOBER, 22))
         	.genero(Genero.MUJER)
+        	.salario(3640.30)
         	.build()
         	);
     
@@ -77,6 +80,7 @@ public class App {
         	.segundoApellido("Gomez")
         	.fechaNacimiento(LocalDate.of(1989, Month.MAY, 30))
         	.genero(Genero.HOMBRE)
+        	.salario(4200.25)
         	.build()
         	);
     
@@ -157,11 +161,68 @@ public class App {
      * utilizando FOR mejorado.
      * */
     
-    for (var p : personas) {
+    /*for (var p : personas) {
     	
     	if (p.genero().equals(Genero.MUJER))
     		personas.remove(p);  // sintacticamente correcto pero no funciona y falla.  	
-    }
+    	}*/
+    
+    /*
+     * Traversing Collections using Agregate Operations.
+     * 
+     * https://docs.oracle.com/javase/tutorial/collections/streams/index.html
+     * 
+     * ej. Calcular el salario promedio de las personas de genero Mujer.
+     * 
+     * Con el metodo tradicional hay que declarar variables para almacenar los salarios, y un contador para las
+     * mujeres que aparezcan y luego dividir los salarios acumulados entre las mujeres contadas. Recorreriamos
+     * la coleccion con for mejorado o iterador.
+     * 
+     * Operacines de agregado intenta convertir la colección en un flujo de elementos que pasan por una tuberia.
+     * La cantidad de elementos puede ser mayor que la memoria disponible. 
+     * Lo hacemos con el metodo stream: convierte la lista de personas en un flujo de personas.
+     * Tb puede ser parallelStream, para usar la potencia de los nucleos del procesador y hacer flujo en paralelo.
+     * Concepto de tuberia o pipeline: secuencia de operaciones de agregado. Implica convertir la colección en 
+     * un flujo de elementos q comienzan a circular por una tubería o pipeline imaginario.
+     * Pipeline = secuencia de metodos de la clase Stream. O secuencia operaciones agregado: metodos que
+     * para obtener un resultado agrupan elementos del flujo.
+     * 
+     * Una tubería o pipeline, tiene un origen que puede ser un array, una colección, un socket, un fichero, una
+     * consulta de DB, etc,.
+     * 
+     * Una tueria puede tener entre 0, 1 y muchas operaciones intermedias y una sola operación terminal.
+     * 
+     * Lo primero es utilizar el metodo stream, q tb puede ser parallelStream, para converir la colección en un
+     * flujo de elementos del mismo tipo q la colec.
+     * 
+     * A partir de tener flujo elementos entran en funcionamiento los metodos de la clase Stream, operaciones
+     * intermedias, como el metodo filter, para permitir q solamente circule al proximo nivel de la tuberia
+     * las personas de genero mujer.
+     * 
+     * Metod filter necesita un predicado y deja o no pasar los elementos que le digamos, dependiendo de su carcterística
+     * recibe un predicado <? super Persona> 
+     * Stream<T> filter(Predicate<? super T> predicate) admite elementos de subtipo T
+     * 
+     * Predicate: Interfaz funcional, condición q tiene que cumplir un elemento q pasa por la tubería. Puede tener 
+     * metodos por defecto, que tienen cuerpo, metodos estáticos, etc., pero solamente un metodo abstracto.
+     * 
+     * El metodo abstracto para el predicado(interface) de filter(metodo) es test(T t): evalua el predicado para el argumento dado, cumple con la condición 
+     * verdaro o falso, vamos que deja pasar o no dependiendo de si el elemento que quiere pasar cumple
+     * con la condición que hemos dado o no.
+     * 
+     * ¿Qué implemeta un interface? una clase (también puede ser un record). En el metodo filter hace falta una clase que implemente la interfaz
+     * predicate
+     * 
+     */
+    
+    	// Stream<Persona> flujoDePersona = personas.stream(); // Establecemos el flujo de personas más o menos, pero no...
+    	
+    	// Filtro filtro = new Filtro();
+    
+    	// personas.stream().filter(filtro)
+    
+    	personas.stream().filter(new Filtro());    	
+    
     
     }
 }
