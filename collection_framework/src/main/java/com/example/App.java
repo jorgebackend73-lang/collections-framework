@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.zip.GZIPInputStream;
 
 // import lombok.var;
 
@@ -148,6 +149,19 @@ public class App {
     
     System.out.println("--- Listado resultante ---");
     System.out.println(personas);
+    
+    /*
+     * Variante #2 de Iterar o recorrer una colección con FOR mejorado.
+     * 
+     * Recorrer lista y eliminar las personas de genero mujer, para ver como no es posible
+     * utilizando FOR mejorado.
+     * */
+    
+    for (var p : personas) {
+    	
+    	if (p.genero().equals(Genero.MUJER))
+    		personas.remove(p);  // sintacticamente correcto pero no funciona y falla.  	
+    }
     
     }
 }
