@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -279,7 +280,14 @@ public class App {
     		
     	personas.stream().filter(p -> p.genero().equals(Genero.MUJER));
     	
+    	/*
+    	 * Empiezo el martes aquí con el ordenamiento de listas.
+    	 * */
     	
+    	Collections.sort(personas);
+    	
+    	// Mostar la lista de personas resultante:
+    	personas.stream().forEach(persona -> System.out.println(persona));
     	
     }
 }
