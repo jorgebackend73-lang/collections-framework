@@ -14,7 +14,9 @@ public record Persona(
 		double salario
 		
 		// Ordenamiento natural hay que implementar la interfaz comparable:
-		) implements Comparable<Persona> { 
+		) 
+
+	/*		implements Comparable<Persona> { 
 	@Override
 	public int compareTo(Persona persona) {
 		// Resultado de la comparación por el primer apellido de dos personas lista personas
@@ -34,7 +36,26 @@ public record Persona(
 		return cmpPrimerApellido != 0 ? cmpPrimerApellido : 
 			cmpSegundoApellido != 0 ? cmpSegundoApellido : 
 				cmpNombre;
-		// jodete un ternario anidado.
+		// jodete un ternario anidado. */
+		
+		/*
+		 * Cambiamos el orden para hacerlo inverso.
+		 * */
+		
+		implements Comparable<Persona> { 
+			@Override
+			public int compareTo(Persona persona) {
+				// Resultado de la comparación por el primer apellido de dos personas lista personas
+				int cmpPrimerApellido = persona.primerApellido()
+						.compareTo(this.primerApellido);
+				// Resultado comparación por segundo apellido:
+				int cmpSegundoApellido = persona.segundoApellido()
+						.compareTo(this.segundoApellido);
+				// Resultado comparación por nombre:
+				int cmpNombre = persona.nombre()
+						.compareTo(this.nombre);
+						
+		
 	}
 
 }

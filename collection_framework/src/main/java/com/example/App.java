@@ -289,5 +289,10 @@ public class App {
     	// Mostar la lista de personas resultante:
     	personas.stream().forEach(persona -> System.out.println(persona));
     	
+    	/*
+    	 * ¿Cómo ordenar la lista de personas en orden natural inverso? lexicográficamente de la Z a la A. 
+    	 * Se cambia en el Record Persona. 
+    	 * */
+    	
     }
 }
